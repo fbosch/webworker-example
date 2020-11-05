@@ -1,23 +1,17 @@
+// initialize web worker ⚙️
+const worker = new Worker("worker.js");
+// - that is using 'calculation.js' internally
 const calculation = require("./calculation.js");
 
-// initiate webworker that is using 'calculation.js' internally
-const worker = new Worker("worker.js");
+const counter = document.querySelector(".display"); // displays number result from calculation
+const checkbox = document.querySelector('input[type="checkbox"]'); // used for toggling between main thread and wb worker
 
-const counter = document.querySelector(".counter");
-const checkbox = document.querySelector('input[type="checkbox"]');
-
-// update DOM with calculated number
-function updateCounter(number) {
-  window.requestAnimationFrame(() => {
-    counter.innerText = number + " \n";
-  });
-}
-
+// random calcation that is computed on either the main thread or in a worker
 async function randomCalculation() {
   const randomNumber = Math.random() * 10;
 
   if (checkbox.checked) {
-    // use worker
+    // calculate in worker
     return new Promise(resolve => {
       worker.addEventListener("message", event => {
         resolve(event.data);
@@ -30,8 +24,34 @@ async function randomCalculation() {
   }
 }
 
-// performs random calculation of variating computational intensity
-window.setInterval(async function() {
-  const number = await randomCalculation();
-  updateCounter(number);
-}, 100);
+// update DOM with calculated number
+function updateDisplay(number) {
+  window.requestAnimationFrame(() => {
+    const thread = checkbox.checked ? "web worker" : "main thread";
+    counter.innerText = `${number}
+      (${thread})
+    `;
+  });
+}
+
+let interval;
+
+function start() {
+  // constantly perform random calculations of varying computational intensity
+  interval = window.setInterval(async function() {
+    const number = await randomCalculation();
+    updateDisplay(number);
+  }, 150);
+}
+
+function stop() {
+  if (interval) {
+    window.clearInterval(interval);
+    interval = null;
+  }
+}
+
+window.start = start;
+window.stop = stop;
+
+start();

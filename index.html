@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Web Worker Demo</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
       rel="stylesheet"
@@ -119,15 +123,15 @@
         position: absolute;
         justify-items: center;
         flex-wrap: wrap;
-        width: 300px;
+        width: 320px;
         left: 50%;
         top: 50%;
         text-align: center;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         transform: translate(-50%, -50%);
       }
 
-      .counter {
+      .display {
         margin: 20px 0;
       }
     </style>
@@ -137,7 +141,7 @@
       <div class="wrapper">
         <div class="content">
           <span>Random Expensive Calculation:</span>
-          <div class="counter"></div>
+          <div class="display"></div>
           <label class="switch">
             <input type="checkbox" />
             <span class="slider round"></span>
