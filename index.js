@@ -8,7 +8,8 @@ const checkbox = document.querySelector('input[type="checkbox"]'); // used for t
 
 // random calculation that is computed on either the main thread or in a worker
 async function randomCalculation() {
-  const randomNumber = Math.random() * 10;
+  const multiplier = window.multiplier ?? 8; // the larger the multiplier is the slower the function runs
+  const randomNumber = Math.random() * multiplier;
 
   if (checkbox.checked) {
     // calculate in worker
@@ -43,7 +44,7 @@ function start() {
       const number = await randomCalculation();
       updateDisplay(number);
     }
-  }, 150);
+  }, 50);
 }
 
 function stop() {
