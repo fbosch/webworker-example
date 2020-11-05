@@ -6,7 +6,7 @@ const calculation = require("./calculation.js");
 const counter = document.querySelector(".display"); // displays number result from calculation
 const checkbox = document.querySelector('input[type="checkbox"]'); // used for toggling between main thread and wb worker
 
-// random calcation that is computed on either the main thread or in a worker
+// random calculation that is computed on either the main thread or in a worker
 async function randomCalculation() {
   const randomNumber = Math.random() * 10;
 
@@ -19,7 +19,7 @@ async function randomCalculation() {
       worker.postMessage(randomNumber);
     });
   } else {
-    // calculate on main thread
+    // calculate on the main thread
     return Promise.resolve(calculation(randomNumber));
   }
 }
