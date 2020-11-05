@@ -1,5 +1,6 @@
-// initialize web worker ⚙️
-const worker = new Worker("worker.js");
+const Comlink = require("comlink");
+// initialize web worker ⚙️ wrapped with comlink
+const workerCalculation = Comlink.wrap(new Worker("worker.js"));
 // - that is using 'calculation.js' internally
 const calculation = require("./calculation.js");
 
@@ -12,12 +13,7 @@ async function randomCalculation() {
 
   if (checkbox.checked) {
     // calculate in worker
-    return new Promise(resolve => {
-      worker.addEventListener("message", event => {
-        resolve(event.data);
-      });
-      worker.postMessage(randomNumber);
-    });
+    return await workerCalculation(randomNumber);
   } else {
     // calculate on the main thread
     return Promise.resolve(calculation(randomNumber));

@@ -1,4 +1,4 @@
 # webworker-example
-Demo of the web worker api
+Demo of the comlink api
 
 ### Get Started - `yarn dev`
