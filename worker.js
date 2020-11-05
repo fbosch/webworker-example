@@ -1,10 +1,11 @@
-const isWorker =
+const calculation = require("./calculation.js");
+
+const isWorker = // check if 'self' is instance of worker
   typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
 
 if (isWorker) {
-  const calculation = require("./calculation.js");
-  self.addEventListener("message", async event => {
-    const response = await calculation(event.data);
+  self.addEventListener("message", event => {
+    const response = calculation(event.data);
     self.postMessage(response);
   });
 }

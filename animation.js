@@ -41,3 +41,4 @@ function createEl(i) {
 }
 
 for (let i = 0; i < numberOfEls; i++) createEl(i);
+// Credit for animation; Julian Garnier: https://codepen.io/juliangarnier/pen/rGjMyW

@@ -37,10 +37,12 @@ function updateDisplay(number) {
 let interval;
 
 function start() {
-  // constantly perform random calculations of varying computational intensity
+  // continously perform random calculations with varying computational intensity
   interval = window.setInterval(async function() {
-    const number = await randomCalculation();
-    updateDisplay(number);
+    if (document.hidden === false) {
+      const number = await randomCalculation();
+      updateDisplay(number);
+    }
   }, 150);
 }
 
@@ -54,4 +56,4 @@ function stop() {
 window.start = start;
 window.stop = stop;
 
-start();
+start(); // 🚀

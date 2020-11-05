@@ -18,7 +18,6 @@
     "prettier": "^1.15.3"
   },
   "dependencies": {
-    "comlink": "^4.3.0",
     "rimraf": "^3.0.2"
   }
 }
