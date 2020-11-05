@@ -1,0 +1,24 @@
+{
+  "name": "webworker-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fbosch/webworker-example.git",
+  "author": "fbosch <frede.bosch@gmail.com>",
+  "license": "MIT",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "scripts": {
+    "dev": "parcel serve index.html --no-cache",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-prettier": "^0.2.1",
+    "prettier": "^1.15.3"
+  },
+  "dependencies": {
+    "comlink": "^4.3.0",
+    "rimraf": "^3.0.2"
+  }
+}
