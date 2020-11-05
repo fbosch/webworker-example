@@ -4,7 +4,7 @@ const workerCalculation = Comlink.wrap(new Worker("worker.js"));
 // - that is using 'calculation.js' internally
 const calculation = require("./calculation.js");
 
-const counter = document.querySelector(".display"); // displays result from calculation
+const display = document.querySelector(".display"); // displays result from calculation
 const checkbox = document.querySelector('input[type="checkbox"]'); // used for toggling between main thread and web worker
 
 // random calculation that is computed on either the main thread or in a worker
@@ -24,7 +24,7 @@ async function randomCalculation() {
 function updateDisplay(number) {
   window.requestAnimationFrame(() => {
     const thread = checkbox.checked ? "web worker" : "main thread";
-    counter.innerText = `${number}
+    display.innerText = `${number}
       (${thread})
     `;
   });
