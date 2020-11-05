@@ -3,8 +3,8 @@ const worker = new Worker("worker.js");
 // - that is using 'calculation.js' internally
 const calculation = require("./calculation.js");
 
-const counter = document.querySelector(".display"); // displays number result from calculation
-const checkbox = document.querySelector('input[type="checkbox"]'); // used for toggling between main thread and wb worker
+const counter = document.querySelector(".display"); // displays result from calculation
+const checkbox = document.querySelector('input[type="checkbox"]'); // used for toggling between main thread and web worker
 
 // random calculation that is computed on either the main thread or in a worker
 async function randomCalculation() {
@@ -24,7 +24,7 @@ async function randomCalculation() {
   }
 }
 
-// update DOM with calculated number
+// update DOM with the calculated number
 function updateDisplay(number) {
   window.requestAnimationFrame(() => {
     const thread = checkbox.checked ? "web worker" : "main thread";
