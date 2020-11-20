@@ -14,9 +14,7 @@ async function randomCalculation() {
   if (checkbox.checked) {
     // calculate in worker
     return new Promise(resolve => {
-      worker.addEventListener("message", event => {
-        resolve(event.data);
-      });
+      worker.onmessage = event => resolve(event.data);
       worker.postMessage(randomNumber);
     });
   } else {
